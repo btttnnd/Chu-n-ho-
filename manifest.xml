@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+  xsi:type="TaskPaneApp">
+
+  <!-- Mỗi add-in cần 1 GUID duy nhất. Đã sinh sẵn, có thể tự đổi nếu muốn. -->
+  <Id>7f2a9e2c-6e3b-4b7d-9f9a-1a2b3c4d5e6f</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Noi bo</ProviderName>
+  <DefaultLocale>vi-VN</DefaultLocale>
+
+  <DisplayName DefaultValue="Chuẩn thể thức NĐ 30" />
+  <Description DefaultValue="Tạo và rà soát văn bản hành chính theo thể thức Nghị định 30/2020/NĐ-CP" />
+
+  <!-- QUAN TRỌNG: thay YOUR_DOMAIN bằng domain HTTPS bạn dùng để host thư mục này (xem README.md) -->
+  <IconUrl DefaultValue="https://btttnnd.github.io/Chu-n-ho-/assets/icon-32.png" />
+  <HighResIconUrl DefaultValue="https://btttnnd.github.io/Chu-n-ho-/assets/icon-64.png" />
+  <SupportUrl DefaultValue="https://btttnnd.github.io/Chu-n-ho-" />
+
+  <AppDomains>
+    <AppDomain>https://btttnnd.github.io/Chu-n-ho-</AppDomain>
+  </AppDomains>
+
+  <Hosts>
+    <Host Name="Document" />
+  </Hosts>
+
+  <Requirements>
+    <Sets>
+      <Set Name="WordApi" MinVersion="1.5" />
+    </Sets>
+  </Requirements>
+
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://btttnnd.github.io/Chu-n-ho-/taskpane.html" />
+  </DefaultSettings>
+
+  <Permissions>ReadWriteDocument</Permissions>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title" />
+            <Description resid="GetStarted.Description" />
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl" />
+          </GetStarted>
+          <FunctionFile resid="Taskpane.Url" />
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="Nd30Group">
+                <Label resid="Nd30Group.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="Nd30TaskpaneButton">
+                  <Label resid="Nd30TaskpaneButton.Label" />
+                  <Supertip>
+                    <Title resid="Nd30TaskpaneButton.Label" />
+                    <Description resid="Nd30TaskpaneButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>Nd30Taskpane</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="https://btttnnd.github.io/Chu-n-ho-/assets/icon-16.png" />
+        <bt:Image id="Icon.32x32" DefaultValue="https://btttnnd.github.io/Chu-n-ho-/assets/icon-32.png" />
+        <bt:Image id="Icon.80x80" DefaultValue="https://btttnnd.github.io/Chu-n-ho-/assets/icon-80.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://btttnnd.github.io/Chu-n-ho-" />
+        <bt:Url id="Taskpane.Url" DefaultValue="https://btttnnd.github.io/Chu-n-ho-/taskpane.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="GetStarted.Title" DefaultValue="Add-in Chuẩn thể thức NĐ 30 đã sẵn sàng" />
+        <bt:String id="Nd30Group.Label" DefaultValue="Thể thức NĐ 30" />
+        <bt:String id="Nd30TaskpaneButton.Label" DefaultValue="Chuẩn thể thức" />
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description" DefaultValue="Dùng tab 'Thể thức NĐ 30' để tạo văn bản mới hoặc rà soát/sửa văn bản hiện có theo Nghị định 30/2020/NĐ-CP." />
+        <bt:String id="Nd30TaskpaneButton.Tooltip" DefaultValue="Mở công cụ tạo/kiểm tra thể thức văn bản theo NĐ 30/2020/NĐ-CP" />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
