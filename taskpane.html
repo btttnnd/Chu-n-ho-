@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chuẩn thể thức NĐ 30</title>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <link rel="stylesheet" href="taskpane.css?v=20260916d" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Chuẩn thể thức NĐ 30</h1>
+    <p class="subtitle">Nghị định 30/2020/NĐ-CP về công tác văn thư · bản cập nhật 16/9-d</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="tab-create">Tạo mới</button>
+    <button class="tab-btn" data-tab="tab-check">Rà soát &amp; sửa</button>
+    <button class="tab-btn" data-tab="tab-tools">Tiện ích</button>
+  </nav>
+
+  <main>
+    <!-- TAB 1: TẠO VĂN BẢN MỚI -->
+    <section id="tab-create" class="tab-panel active">
+      <div class="field">
+        <label for="loaiVanBan">Loại văn bản</label>
+        <select id="loaiVanBan">
+          <option value="CONG_VAN">Công văn</option>
+          <option value="TO_TRINH">Tờ trình</option>
+          <option value="BAO_CAO">Báo cáo</option>
+          <option value="THONG_BAO">Thông báo</option>
+          <option value="QUYET_DINH">Quyết định (cá biệt)</option>
+          <option value="KE_HOACH">Kế hoạch</option>
+          <option value="BIEN_BAN">Biên bản</option>
+          <option value="CONG_DIEN">Công điện</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="coQuanChuQuan">Tên cơ quan chủ quản (nếu có, để trống nếu không có cấp trên trực tiếp)</label>
+        <input type="text" id="coQuanChuQuan" placeholder="VD: ỦY BAN NHÂN DÂN TỈNH ABC" />
+      </div>
+
+      <div class="field">
+        <label for="coQuanBanHanh">Tên cơ quan ban hành *</label>
+        <input type="text" id="coQuanBanHanh" placeholder="VD: SỞ NỘI VỤ" />
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="soHieu">Số văn bản (để trống nếu chưa có)</label>
+          <input type="text" id="soHieu" placeholder="VD: 12" />
+        </div>
+        <div class="field">
+          <label for="kyHieuCoQuan">Ký hiệu viết tắt cơ quan *</label>
+          <input type="text" id="kyHieuCoQuan" placeholder="VD: SNV" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="diaDanh">Địa danh ban hành *</label>
+        <input type="text" id="diaDanh" placeholder="VD: Hà Nội" />
+      </div>
+
+      <div class="field" id="fieldTrichYeu">
+        <label for="trichYeu">Trích yếu nội dung *</label>
+        <input type="text" id="trichYeu" placeholder="VD: về việc tổ chức Hội nghị tổng kết năm 2026" />
+      </div>
+
+      <div class="field">
+        <label for="noiNhan">Nơi nhận (mỗi dòng một nơi)</label>
+        <textarea id="noiNhan" rows="4" placeholder="Như trên;&#10;Lưu: VT, [đơn vị soạn thảo].">Như trên;
+Lưu: VT.</textarea>
+      </div>
+
+      <div class="field">
+        <label for="chucVuKy">Chức vụ người ký *</label>
+        <input type="text" id="chucVuKy" placeholder="VD: GIÁM ĐỐC" />
+      </div>
+
+      <button id="btnCreate" class="primary-btn">Chèn văn bản mẫu vào tài liệu</button>
+      <p class="hint">Văn bản mẫu sẽ được chèn vào đầu tài liệu đang mở, đã canh đúng font chữ, cỡ chữ, khoảng lề theo NĐ 30. Bạn chỉ cần thay nội dung trong phần thân.</p>
+    </section>
+
+    <!-- TAB 2: RÀ SOÁT & SỬA -->
+    <section id="tab-check" class="tab-panel">
+      <p class="section-desc">Áp dụng cho văn bản đang mở.</p>
+
+      <div class="field">
+        <select id="fontSizeAll">
+          <option value="14">Cỡ chữ nội dung: 14 (phổ biến)</option>
+          <option value="13">Cỡ chữ nội dung: 13 (văn bản nhiều bảng biểu)</option>
+        </select>
+      </div>
+      <div class="field margin-inputs">
+        <label>Lề trang (mm), trong khung cho phép của NĐ 30:</label>
+        <div class="row-4">
+          <input type="number" id="mgTopAll" value="20" min="20" max="25" title="Trên" />
+          <input type="number" id="mgBottomAll" value="20" min="20" max="25" title="Dưới" />
+          <input type="number" id="mgLeftAll" value="30" min="30" max="35" title="Trái" />
+          <input type="number" id="mgRightAll" value="15" min="15" max="20" title="Phải" />
+        </div>
+      </div>
+
+      <button id="btnFixAll" class="primary-btn big-btn">✓ Rà soát &amp; Sửa toàn bộ theo NĐ 30</button>
+      <p class="hint">
+        Tự động sửa trong 1 lần bấm: khổ giấy A4 &amp; lề trang, font Times New Roman, cỡ chữ, giãn dòng
+        1.5, khoảng cách đoạn, thụt đầu dòng nội dung, Quốc hiệu/Tiêu ngữ, định dạng ngày tháng năm ban
+        hành (thêm số 0 trước ngày &lt;10 và tháng 1, 2 theo đúng quy định). Không ảnh hưởng riêng tới
+        khối "Nơi nhận" hay khối chữ ký/chức vụ — 2 khối này được giữ đúng cỡ chữ nhỏ hơn theo thể thức.
+      </p>
+
+      <details class="advanced-block">
+        <summary>Sửa riêng từng phần (nâng cao)</summary>
+
+      <div class="check-item">
+        <div>
+          <strong>Khổ giấy &amp; lề trang</strong>
+          <p>A4, lề trên/dưới 20mm, lề trái 30mm, lề phải 15mm (theo khung 20-25 / 30-35 / 15-20mm của NĐ 30)</p>
+        </div>
+        <button class="fix-btn" id="btnFixMargin">Áp dụng</button>
+      </div>
+
+      <div class="field margin-inputs">
+        <label>Tùy chỉnh lề (mm), nếu cần trong khung cho phép:</label>
+        <div class="row-4">
+          <input type="number" id="mgTop" value="20" min="20" max="25" title="Trên" />
+          <input type="number" id="mgBottom" value="20" min="20" max="25" title="Dưới" />
+          <input type="number" id="mgLeft" value="30" min="30" max="35" title="Trái" />
+          <input type="number" id="mgRight" value="15" min="15" max="20" title="Phải" />
+        </div>
+      </div>
+
+      <div class="check-item">
+        <div>
+          <strong>Font chữ toàn văn bản</strong>
+          <p>Times New Roman, cỡ chữ áp dụng cho toàn bộ nội dung</p>
+        </div>
+        <button class="fix-btn" id="btnFixFont">Áp dụng</button>
+      </div>
+      <div class="field">
+        <select id="fontSize">
+          <option value="14">Cỡ chữ 14 (phổ biến)</option>
+          <option value="13">Cỡ chữ 13 (văn bản nhiều bảng biểu)</option>
+        </select>
+      </div>
+
+      <div class="check-item">
+        <div>
+          <strong>Quốc hiệu, tiêu ngữ</strong>
+          <p>Rà soát đoạn "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM" và "Độc lập - Tự do - Hạnh phúc", tự sửa in hoa/đậm/cỡ chữ/gạch chân nếu tìm thấy</p>
+        </div>
+        <button class="fix-btn" id="btnFixQuocHieu">Rà soát &amp; sửa</button>
+      </div>
+
+      </details>
+
+      <button id="btnScan" class="primary-btn secondary-btn">Chỉ xem báo cáo (không sửa)</button>
+
+      <div id="scanReport" class="scan-report"></div>
+    </section>
+
+    <!-- TAB 3: TIỆN ÍCH -->
+    <section id="tab-tools" class="tab-panel">
+      <div class="tool-group">
+        <h3>Trang &amp; bố cục</h3>
+        <div class="tool-row">
+          <button class="tool-btn" id="btnInsertLandscape">Chèn trang ngang</button>
+          <button class="tool-btn" id="btnInsertPortrait">Chèn trang dọc</button>
+        </div>
+        <div class="tool-row">
+          <button class="tool-btn" id="btnRemoveBlankPages">Xoá trang thừa cuối văn bản</button>
+          <button class="tool-btn" id="btnInsertPageNumber">Chèn số trang</button>
+        </div>
+        <div class="tool-row">
+          <button class="tool-btn" id="btnQuickSize13">Cỡ chữ 13</button>
+          <button class="tool-btn" id="btnQuickSize14">Cỡ chữ 14</button>
+          <button class="tool-btn" id="btnQuickSize15">Cỡ chữ 15</button>
+        </div>
+        <div class="tool-row">
+          <button class="tool-btn" id="btnKeepWithNext">Keep with next (đoạn hiện tại)</button>
+        </div>
+      </div>
+
+      <div class="tool-group">
+        <h3>Bảng biểu &amp; hình ảnh</h3>
+        <div class="tool-row">
+          <button class="tool-btn" id="btnRepeatTableHeader">Lặp tiêu đề bảng</button>
+          <button class="tool-btn" id="btnCenterTables">Căn giữa bảng</button>
+        </div>
+        <div class="tool-row">
+          <button class="tool-btn" id="btnCenterImages">Căn giữa &amp; vừa ảnh</button>
+          <button class="tool-btn" id="btnCleanExcelPaste">Xoá ký tự thừa (dán từ Excel)</button>
+        </div>
+        <div class="tool-row">
+          <button class="tool-btn" id="btnCellAlignTop">Căn đỉnh ô (bảng đang chọn)</button>
+          <button class="tool-btn" id="btnCellAlignCenter">Căn giữa ô (bảng đang chọn)</button>
+        </div>
+      </div>
+
+      <div class="tool-group">
+        <h3>Tiện ích khác</h3>
+        <div class="field">
+          <label for="qrText">Nội dung mã QR (link hoặc văn bản)</label>
+          <input type="text" id="qrText" placeholder="VD: https://..." />
+        </div>
+        <button class="tool-btn full-width" id="btnInsertQr">Chèn mã QR</button>
+
+        <div class="tool-row" style="margin-top:10px">
+          <button class="tool-btn" id="btnRemoveDiacritics">Xoá dấu tiếng Việt</button>
+          <button class="tool-btn" id="btnDecimalComma">Đổi số sang kiểu VN (1.234,56)</button>
+        </div>
+      </div>
+      <p class="hint">
+        Các tiện ích này là thao tác định dạng cơ học (không cần từ điển ngôn ngữ) nên độ chính xác cao.
+        Rà soát chính tả / chuẩn hoá i-y không có trong add-in này vì cần bộ từ điển rất lớn mới đảm bảo
+        chính xác — nếu cần, có thể dùng thêm công cụ chuyên biệt cho việc đó.
+      </p>
+    </section>
+  </main>
+
+  <div id="statusBar" class="status-bar" role="status"></div>
+
+  <script src="taskpane.js?v=20260916d"></script>
+</body>
+</html>
